@@ -2,15 +2,27 @@
 import React, { useState } from 'react';
 import './Login.css'; // Import styles from App.css
 import {loginApi} from "../util/api.js"
+import userState from '../model/UserState.js';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate ()
 
   async function loginHandler(credentials){
     try {
         const userData = await loginApi(credentials);
-          console.log('Login successful. User data:', userData);  
+        console.log('Login successful. User data:', userData);  
+        if (userData.data.id && userData.data.token){
+            console.log("admin user")
+            navigate("/home")
+        }else if (userData.data.id){
+            console.log("consumer")
+        }else{
+            console.log("guest")
+        }
+        
       } catch (error) {
         console.error('Login failed:', error.message);
       }
