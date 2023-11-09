@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import './Register.css'; // Import your CSS file for styling
 import axios from "axios";
+import {Link} from "react-router-dom"
+import { useNavigate } from 'react-router-dom';
 
-async function registerApiCall(user){
+
+async function registerApiCall(user,navigate){
     console.log('api call started')
     try {
         const response = await axios.post('http://localhost:4000' + '/user/registerUser',user)
         if (response.status === 201){
-            alert("User registered successfully")
+            alert("User registered successfully. Press Ok to login")
+            navigate("/login")
         }else{
             console.log(response.status)
         }
@@ -21,7 +25,7 @@ function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
-
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     // Form the data object to send the details to  API
@@ -30,28 +34,14 @@ function Register() {
       password,
       name,
     };
-
-    registerApiCall(userData)
-    // Make an API call here using a library like Axios or fetch
-    // Example using fetch:
-    /*fetch('https://api.example.com/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(userData),
-    })
-      .then((response) => {
-        if (response.status === 200) {
-          // Handle success, e.g., redirect to another page or show a success message
-        } else {
-          // Handle errors, e.g., display an error message
-        }
-      })
-      .catch((error) => {
-        console.error('API call error:', error);
-      });*/
+    registerApiCall(userData,navigate)
   }
+
+  function reset() {
+    setEmail('')
+    setPassword('')
+    setName('')
+}   
 
   return (
     <div className="App">
@@ -85,9 +75,19 @@ function Register() {
               onChange={(e) => setName(e.target.value)}
             />
           </div>
+          <div>
+          </div>
+          <div className='button-container'>
           <button className="register-button" type="submit">
             Register
           </button>
+          <Link to="/login">
+            <button className="register-button" onClick={reset}>
+            Cancel
+          </button>
+          </Link>
+          
+          </div>
         </form>
       </div>
     </div>

@@ -1,35 +1,19 @@
-.Register {
+/* App.css */
+
+.App {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     background-color: #f4f4f4;
   }
-
-  .headContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .subtitle {
-    align-items: center;
-    font-size: large;
-    color: gray;
-  }
-
-  .button-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-  }
-
+  
   .form-container {
-    background-color: #f4f4f4;
+    background-color: #fff;
     padding: 20px;
     border-radius: 5px;
-    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); */
-    width: 80%; /* Adjust the width as needed */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    width: 80%;
   }
   
   .form-group {
@@ -48,7 +32,7 @@
   }
   
   .register-button {
-    margin-right: 5px;
+    width: 100%;
     padding: 10px;
     background-color: #007bff;
     color: #fff;

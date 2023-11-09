@@ -1,2 +1,18 @@
 
-const baseUrl = 'http://localhost:4000'
+import axios from "axios"
+
+const baseUrl = "http://localhost:4000"
+
+export const loginApi = async(credential) => {
+    try{
+        const response = await axios.post(`${baseUrl}/user/login`,credential)
+        if (response.status === 200){
+            return response.data
+        }else{
+            throw new Error('Login failed')
+        }
+    }catch(err){
+       console.log(err)
+        throw new Error("Api failed")
+    }
+}
