@@ -18,3 +18,16 @@ export const loginApi = async(credential) => {
         throw new Error("Api failed")
     }
 }
+
+/*export const fetchNews = async() => {
+    try {
+        const response = await axios.get(`${baseUrl}/article/list`)
+        if (response.status === 200){
+            return response.data
+        }else{
+            throw new Error()
+        }
+    }catch (err){
+
+    }
+}*/
