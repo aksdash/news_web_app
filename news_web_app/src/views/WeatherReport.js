@@ -1,12 +1,49 @@
 // WeatherReport.js
 import React from 'react';
+import axios from 'axios';
+import { useState,useEffect } from 'react';
 
 const WeatherReport = () => {
-  const weatherData = {
+  let weatherData = {
     temperature: '25°C',
     humidity: '60%',
     windSpeed: '15 km/h',
     conditions: 'Partly Cloudy',
+  };
+  const [weather, setWeather] = useState(null);
+
+  useEffect(() => {
+    // Get user's location
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+
+          // Fetch weather data using OpenWeatherMap API
+          fetchWeatherData(latitude, longitude);
+        },
+        (error) => {
+          console.error('Error getting location:', error);
+        }
+      );
+    } else {
+      console.error('Geolocation is not supported by this browser.');
+    }
+  }, []);
+
+  const fetchWeatherData = async (latitude, longitude) => {
+    try {
+      const apiKey = '4a19728f569e5cfb22738bb02d669753'; // Replace with your API key
+      const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
+
+      // Make a request to OpenWeatherMap API
+      const response = await axios.get(apiUrl);
+      console.log(response.data)
+      weatherData = response.data
+      setWeather(response.data);
+    } catch (error) {
+      console.error('Error fetching weather data:', error);
+    }
   };
 
   return (
