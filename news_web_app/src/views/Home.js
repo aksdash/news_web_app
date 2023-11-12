@@ -5,6 +5,7 @@ import WeatherReport from './WeatherReport.js';
 import ImageCarousel from './ImageCarousel.js';
 import HeaderView from './template/header.js';
 import Footer from './template/footer.js';
+import ChatBox from './ChatBox.js';
 import { fetchNews } from '../util/api.js';
 import axios from 'axios';
 
@@ -37,6 +38,7 @@ const Home = () => {
         <LatestNews />
         <ImageGallery />
     <ChatBox /> */}
+        <ChatBox />
         <Footer />
       </div>
     );
