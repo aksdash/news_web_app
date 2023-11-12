@@ -4,17 +4,25 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const ImageCarousel = () => {
+const ImageCarousel = ({data}) => {
+
+    let arr = []
+    if (data instanceof Array){
+        arr = data
+        arr = data.slice(0,3)
+    }
   const images = [
-    'https://via.placeholder.com/800x400/FF5733/FFFFFF?text=Image+1',
+    'https://www.reuters.com/resizer/Fiw4w6C3A4BgFTCXLzoE8SNdC1I=/1920x0/filters:quality(80)/cloudfront-us-east-2.images.arcpublishing.com/reuters/S3UOMLPB4NLE7KRDP77LYOS3XI.jpg',
     'https://via.placeholder.com/800x400/33FF57/FFFFFF?text=Image+2',
     'https://via.placeholder.com/800x400/5733FF/FFFFFF?text=Image+3',
   ];
 
+  let imagePlaceholder = "https://via.placeholder.com/800x400/5733FF/FFFFFF?text=Image+3"
+
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 900,
     slidesToShow: 1,
     slidesToScroll: 1,
   };
@@ -22,9 +30,9 @@ const ImageCarousel = () => {
   return (
     <div style={styles.carouselContainer}>
       <Slider {...settings}>
-        {images.map((image, index) => (
+        {arr.map((obj, index) => (
           <div key={index} style={styles.imageContainer}>
-            <img src={image} alt={`Image ${index + 1}`} style={styles.image} />
+            <img src={ (obj.imageUrl) ? obj.imageUrl : imagePlaceholder} alt={`Image ${index + 1}`} style={styles.image} />
           </div>
         ))}
       </Slider>

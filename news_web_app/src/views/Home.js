@@ -1,21 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from './template/header.js';
 import LatestNews from './Latestnews.js';
 import WeatherReport from './WeatherReport.js';
 import ImageCarousel from './ImageCarousel.js';
 import HeaderView from './template/header.js';
 import Footer from './template/footer.js';
+import { fetchNews } from '../util/api.js';
+import axios from 'axios';
 
 const Home = () => {
+    const [apiData, setApiData] = useState(null)
+    useEffect(() => {
+        fetchNews1()
+    },[]) 
+
+    const fetchNews1 = async () => {
+       try {
+        const news = await fetchNews()
+        setApiData(news.data)
+        console.log(apiData)
+       }catch(err){
+        console.log(err)
+       }
+    };
+
     return (
       <div>
         <HeaderView />
         <WeatherReport />
         <div>
             {/* <LatestNews /> */}
-            <ImageCarousel />
+            <ImageCarousel data = {apiData}/>
         </div>
-        <LatestNews /> 
+        <LatestNews data = {apiData}/> 
         {/* <WeatherReport />
         <LatestNews />
         <ImageGallery />

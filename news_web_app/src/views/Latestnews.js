@@ -1,8 +1,13 @@
 // News.js
 import React from 'react';
 
-const LatestNews = () => {
-  const newsData = [
+const LatestNews = ({data}) => {
+    let arr = []
+    if (data instanceof Array){
+        arr = data
+        arr = data.slice(0,3)
+    }
+    const newsData = [
     {
       title: 'Breaking News 1',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. sdfsdfsaf sadfsdafsdf asdfsdf asdfsdf asdfsadf asdfsdf',
@@ -19,7 +24,7 @@ const LatestNews = () => {
 
   return (
     <div style={styles.newsContainer}>
-      {newsData.map((news, index) => (
+      {arr.map((news, index) => (
         <div key={index} style={styles.newsBox}>
           <h3 style={styles.title}>{news.title}</h3>
           <p style={styles.description}>{news.description}</p>

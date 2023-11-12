@@ -7,6 +7,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Register from './views/Register.js'
 import Login from './views/Login.js';
 import Home from './views/Home.js';
+import NewsForm from './views/NewsForm.js';
+import NewsList from './views/NewsList';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -17,6 +19,8 @@ root.render(
         <Route path='/' element = { <Register />} />
         <Route path='/login' element = { <Login />} />
         <Route path= '/home' element = {<Home />} />
+        <Route path='/newsform' element = {<NewsForm  />} />
+        <Route path = '/newslist' element = {<NewsList />}  />
       </Routes>
     </Router>
   </React.StrictMode>
