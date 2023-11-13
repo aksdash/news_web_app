@@ -78,6 +78,7 @@ const NewsForm = () => {
             name="title"
             value={formData.title}
             onChange={handleChange}
+            style={styles.input}
           />
         </div>
         <br />
@@ -88,6 +89,7 @@ const NewsForm = () => {
             name="description"
             value={formData.description}
             onChange={handleChange}
+            style={styles.input}
           />
         </div>
         <br />
@@ -98,6 +100,7 @@ const NewsForm = () => {
             name="url"
             value={formData.url}
             onChange={handleChange}
+            style={styles.input}
           />
         </div>
         <br />
@@ -108,6 +111,7 @@ const NewsForm = () => {
             name="imageUrl"
             value={formData.imageUrl}
             onChange={handleChange}
+            style={styles.input}
           />
         </div>
 
@@ -146,6 +150,10 @@ const NewsForm = () => {
 };
 
 const styles = {
+  input: {
+    width : '80%'
+  },
+
   formContainer: {
     marginLeft: '200px',
     marginRight: '50px',
@@ -160,7 +168,7 @@ const styles = {
   },
 
   blueButton: {
-    backgroundColor: 'blue',
+    backgroundColor: '#34ebd8',
     color: 'white',
     padding: '8px 16px',
     margin: '0 10px',

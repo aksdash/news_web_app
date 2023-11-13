@@ -3,7 +3,7 @@ import './Register.css'; // Import your CSS file for styling
 import axios from "axios";
 import {Link} from "react-router-dom"
 import { useNavigate } from 'react-router-dom';
-import HeaderView from './template/header.js';
+import LoginHeader from './template/loginHeader';
 
 
 async function registerApiCall(user,navigate){
@@ -46,7 +46,7 @@ function Register() {
 
   return (
     <>
-        <HeaderView />
+        <LoginHeader />
         < br/>
         <h2 style={{display:"flex",justifyContent:'center'}}>Registration</h2>
         <br />
