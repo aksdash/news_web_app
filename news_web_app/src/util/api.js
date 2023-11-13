@@ -34,8 +34,10 @@ export const fetchNews = async() => {
 }
 
 export const submitNews = async(req) => {
+    const token = sessionStorage.getItem('token');
+    const config = getConfig()
     try {
-        const response = await axios.post(`${baseUrl}/article/add`, req)
+        const response = await axios.post(`${baseUrl}/article/add`, req,config)
        console.log(response.status)
         if (response.status === 200){
             return true 
@@ -48,8 +50,9 @@ export const submitNews = async(req) => {
 }
 
 export const deleteNews = async(req) => {
+    const config = getConfig()
     try {
-        const res = await axios.delete(`${baseUrl}/article/${req}`)
+        const res = await axios.delete(`${baseUrl}/article/${req}`,config)
         if (res.status === 200){
             return true
         }else{
@@ -58,4 +61,15 @@ export const deleteNews = async(req) => {
     }catch(err){
         throw new Error("Internal Server Error")
     }
+}
+
+function getConfig(){
+    const token = sessionStorage.getItem('token');
+    const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `${token}`,
+        },
+      };
+      return config
 }

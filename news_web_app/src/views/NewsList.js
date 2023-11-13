@@ -2,8 +2,10 @@
 import React, { useEffect, useState } from 'react';
 import { fetchNews,deleteNews } from '../util/api';
 import AdminHeader from './template/admindHeader';
+import { useNavigate } from 'react-router-dom';
 
 const NewsList = () => {
+  const navigate = useNavigate()
   const [news, setNews] = useState( [{
     "_id": "65489d3cc997685d5bd874ab",
     "title": "Over 30,000 pro-Palestinian protesters march in London, draw counter-protests",
@@ -28,6 +30,28 @@ const NewsList = () => {
       setNews([])
       console.log("error happened")
     } 
+  }
+
+  const handleEdit = (articleId) => {
+    // Add your logic to handle the edit action
+    console.log(`Edit article with ID: ${articleId}`);
+  };
+  
+  const handleDelete = (articleId) => {
+    console.log(`Delete article with Id ${articleId}`)
+    delAPi(articleId)
+  }
+  
+  const delAPi = async(id) => {
+    try{
+      const res = await deleteNews(id)
+      if (res){
+        alert("item deleted ")
+        window.location.reload();
+      }
+    }catch(err){
+      console.log(err)
+    }
   }
   return (
     <>
@@ -54,28 +78,9 @@ const NewsList = () => {
     </div>
     </>
   );
+
 };
 
-const handleEdit = (articleId) => {
-  // Add your logic to handle the edit action
-  console.log(`Edit article with ID: ${articleId}`);
-};
-
-const handleDelete = (articleId) => {
-  console.log(`Delete article with Id ${articleId}`)
-  delAPi(articleId)
-}
-
-const delAPi = async(id) => {
-  try{
-    const res = await deleteNews(id)
-    if (res){
-      alert("item deleted ")
-    }
-  }catch(err){
-    console.log(err)
-  }
-}
 
 const styles = {
   container: {

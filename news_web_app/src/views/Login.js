@@ -4,6 +4,8 @@ import './Login.css'; // Import styles from App.css
 import {loginApi} from "../util/api.js"
 import userState from '../model/UserState.js';
 import { useNavigate } from 'react-router-dom';
+import LoginHeader from './template/loginHeader.js';
+
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -15,8 +17,10 @@ function Login() {
         const userData = await loginApi(credentials);
         console.log('Login successful. User data:', userData);  
         if (userData.data.id && userData.data.token){
+            sessionStorage.setItem('token', userData.data.token);
             console.log("admin user")
-            navigate("/home")
+            navigate("/newslist")
+
         }else if (userData.data.id){
             console.log("consumer")
         }else{
@@ -43,7 +47,9 @@ function Login() {
   };
 
   return (
-    <div className="form-container"> {/* Apply the same class as in Register component */}
+    <>
+    <LoginHeader />
+     <div className="form-container"> {/* Apply the same class as in Register component */}
       <h2>Login Page</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -74,6 +80,7 @@ function Login() {
         </div>
       </form>
     </div>
+    </>
   );
 }
 

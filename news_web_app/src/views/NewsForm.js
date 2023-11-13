@@ -2,8 +2,10 @@
 import React, { useState } from 'react';
 import { submitNews } from '../util/api.js';
 import AdminHeader from './template/admindHeader.js';
+import { useNavigate } from 'react-router-dom';
 const NewsForm = () => {
-  const [formData, setFormData] = useState({
+    const navigate = useNavigate()
+    const [formData, setFormData] = useState({
     title: '',
     description: '',
     url: '',
@@ -33,6 +35,7 @@ const NewsForm = () => {
         const res = await submitNews(news)
         if(res){
             alert('form submitted Sucessfully')
+            navigate('/newslist')
         }
     }catch(err){
         console.log(err)

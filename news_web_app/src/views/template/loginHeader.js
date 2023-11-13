@@ -2,15 +2,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const HeaderView = () => {
+const LoginHeader = () => {
   return (
     <div style={styles.headerContainer}>
        <div style={styles.box}>Update 24X7</div>
-      <div style={styles.box}><Link to="/home" style={styles.link}>Home</Link></div>
-      <div style={styles.box}><Link to="/sports" style = {styles.link}>Sports</Link></div>
-      <div style={styles.box}><Link to="/aboutus" style = {styles.link}>About Us</Link></div>
-      <div style={styles.box}><Link to="/contact us" style ={styles.link}>Contact Us</Link></div>
-      <div style={styles.box}><Link to="/login" style ={styles.link}>Admin Login</Link></div>
+      <div style={styles.box}><Link to="/register" style={styles.link}>Register</Link></div>
+      <div style={styles.box}><Link to="/login" style ={styles.link}>Login</Link></div>
     </div>
   );
 };
@@ -39,4 +36,4 @@ const styles = {
   }
 };
 
-export default HeaderView;
+export default LoginHeader;

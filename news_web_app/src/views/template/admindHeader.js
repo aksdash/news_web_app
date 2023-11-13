@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom'; // Assuming you are using React Router 
 const AdminHeader = () => {
   return (
     <div style={styles.header}>
-      <div style={styles.logo}>Logo</div>
+      <div style={styles.logo}>Update24X7</div>
 
       <div style={styles.navLinks}>
-        <Link to="/newsform">News Form</Link>
-        <Link to="/newslist">Edit News</Link>
-        <Link to="/Logout">Logout</Link>
+        <Link style={styles.link} to="/newsform">News Form</Link>
+        <Link style={styles.link} to="/newslist">Edit News</Link>
+        <Link style={styles.link}to="/login">Logout</Link>
       </div>
     </div>
   );
@@ -18,7 +18,7 @@ const AdminHeader = () => {
 
 const styles = {
   header: {
-    backgroundColor: '#ccc',
+    backgroundColor: '#343c43',
     padding: '15px',
     display: 'flex',
     justifyContent: 'flex-start',
@@ -27,12 +27,14 @@ const styles = {
   logo: {
     fontSize: '20px',
     fontWeight: 'bold',
-    marginRight : '30px'
+    marginRight : '30px',
+    color: 'white'
   },
   navLinks: {
     display: 'flex',
     gap: '30px',
   },
+
   link: {
     color: 'white', // Set the desired link color
     textDecoration: 'none', // Remove underline (optional)

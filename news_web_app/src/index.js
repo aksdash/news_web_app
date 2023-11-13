@@ -11,16 +11,18 @@ import NewsForm from './views/NewsForm.js';
 import NewsList from './views/NewsList';
 
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Router>
       <Routes>
-        <Route path='/' element = { <Register />} />
+        <Route path='/' element = { <Home />} />
         <Route path='/login' element = { <Login />} />
         <Route path= '/home' element = {<Home />} />
         <Route path='/newsform' element = {<NewsForm  />} />
-        <Route path = '/newslist' element = {<NewsList />}  />
+        <Route path= '/newslist' element = {<NewsList />}  />
+        <Route path= '/register' element = {<Register />} />
       </Routes>
     </Router>
   </React.StrictMode>
