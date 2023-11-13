@@ -11,6 +11,8 @@ import axios from 'axios';
 
 const Home = () => {
     const [apiData, setApiData] = useState(null)
+    const [isChatVisible, setChatVisible] = useState(false);
+    const userName = 'test user'
     useEffect(() => {
         fetchNews1()
     },[]) 
@@ -23,6 +25,10 @@ const Home = () => {
        }catch(err){
         console.log(err)
        }
+    };
+
+    const toggleChatVisibility = () => {
+        setChatVisible((prevVisibility) => !prevVisibility);
     };
 
     return (
@@ -38,10 +44,23 @@ const Home = () => {
         <LatestNews />
         <ImageGallery />
     <ChatBox /> */}
-        <ChatBox />
+         <button style={styles.toggleButton} onClick={toggleChatVisibility}>
+            {isChatVisible ? 'Hide Chat' : 'Show Chat'}
+        </button>
+        {isChatVisible && <ChatBox />}
         <Footer />
       </div>
     );
   };
   
   export default Home;
+
+  const styles = {
+    toggleButton: {
+      position: 'fixed',
+      bottom: '20px',
+      right: '20px',
+      padding: '10px',
+      cursor: 'pointer',
+    },
+  };

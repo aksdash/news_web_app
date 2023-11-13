@@ -1,13 +1,14 @@
 // HeaderView.js
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const HeaderView = () => {
   return (
     <div style={styles.headerContainer}>
-      <div style={styles.box}>Home</div>
-      <div style={styles.box}>Sports</div>
-      <div style={styles.box}>About us</div>
-      <div style={styles.box}>Contact Us</div>
+      <div style={styles.box}><Link to="/home" style={styles.link}>Home</Link></div>
+      <div style={styles.box}><Link to="/sports" style = {styles.link}>Sports</Link></div>
+      <div style={styles.box}><Link to="/aboutus" style = {styles.link}>About Us</Link></div>
+      <div style={styles.box}><Link to="/contact us" style ={styles.link}>Contact Us</Link></div>
     </div>
   );
 };
@@ -28,7 +29,12 @@ const styles = {
     textAlign: 'center',
     lineHeight: '50px', // Vertically center the text
     boxSizing: 'border-box', // Include padding and border in the box size
+
   },
+  link: {
+    color: 'white', // Set the desired link color
+    textDecoration: 'none', // Remove underline (optional)
+  }
 };
 
 export default HeaderView;

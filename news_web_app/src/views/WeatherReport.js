@@ -10,7 +10,7 @@ const WeatherReport = () => {
     windSpeed: '15 km/h',
     conditions: 'Partly Cloudy',
   };
-  const [weather, setWeather] = useState(null);
+  const [weather, setWeather] = useState(weatherData);
 
   useEffect(() => {
     // Get user's location
@@ -38,9 +38,15 @@ const WeatherReport = () => {
 
       // Make a request to OpenWeatherMap API
       const response = await axios.get(apiUrl);
-      console.log(response.data)
+      console.log(response.data.name)
       weatherData = response.data
-      setWeather(response.data);
+      const wt = {
+         temperature : response.data.main.temp,
+         city: response.data.name,
+         humidity: response.data.main.humidity,
+         windSpeed: response.data.wind.speed
+       }
+      setWeather(wt);
     } catch (error) {
       console.error('Error fetching weather data:', error);
     }
@@ -52,28 +58,28 @@ const WeatherReport = () => {
         <span role="img" aria-label="Temperature" style={styles.icon}>
           🌡️
         </span>
-        <p>{weatherData.temperature}</p>
+        <p>{weather.temperature}</p>
       </div>
 
       <div style={styles.weatherItem}>
         <span role="img" aria-label="Humidity" style={styles.icon}>
           💧
         </span>
-        <p>{weatherData.humidity}</p>
+        <p>{weather.humidity}</p>
       </div>
 
       <div style={styles.weatherItem}>
         <span role="img" aria-label="Wind Speed" style={styles.icon}>
           🌬️
         </span>
-        <p>{weatherData.windSpeed}</p>
+        <p>{weather.windSpeed}</p>
       </div>
 
       <div style={styles.weatherItem}>
-        <span role="img" aria-label="Conditions" style={styles.icon}>
-          ☁️
+        <span role="img" aria-label="City" style={styles.icon}>
+          
         </span>
-        <p>{weatherData.conditions}</p>
+        <p>{weather.city}</p>
       </div>
     </section>
   );
@@ -85,9 +91,12 @@ const styles = {
     justifyContent: 'space-between',
     alignItems: 'center',
     height: '100px',
-    marginLeft : '30px',
-    marginRight : '30px',
-    backgroundColor: '#f2f2f2',
+    marginLeft : '0px',
+    marginRight : '0px',
+    paddingLeft : '30px',
+    paddingRight : '20px',
+    backgroundColor: '#d3ebdb',
+
   },
   weatherItem: {
     display: 'flex',
@@ -96,7 +105,7 @@ const styles = {
   },
   icon: {
     fontSize: '2em',
-    marginBottom: '10px',
+    marginBottom: '5px',
   },
 };
 

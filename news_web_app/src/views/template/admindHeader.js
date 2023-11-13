@@ -33,6 +33,10 @@ const styles = {
     display: 'flex',
     gap: '30px',
   },
+  link: {
+    color: 'white', // Set the desired link color
+    textDecoration: 'none', // Remove underline (optional)
+  }
 };
 
 export default AdminHeader;
