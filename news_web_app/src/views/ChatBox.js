@@ -23,6 +23,7 @@ const ChatBox = () => {
       socket.on('message', (newMessage) => {
         setChatHistory((prevChatHistory) => [...prevChatHistory, newMessage]);
       });
+
     }
   }, [socket]);
 
@@ -38,6 +39,12 @@ const ChatBox = () => {
       socket.emit('message', { username, message });
       setMessage('');
     }
+  };
+
+  const handleCloseChat = () => {
+    setIsJoined(false);
+    setUsername('');
+    
   };
 
   return (
@@ -82,6 +89,9 @@ const ChatBox = () => {
             />
             <button onClick={handleSendMessage}>Send</button>
           </div>
+          <button onClick={handleCloseChat} style={{ marginTop: '10px' }}>
+            Close Chat
+          </button>
         </div>
       )}
     </div>

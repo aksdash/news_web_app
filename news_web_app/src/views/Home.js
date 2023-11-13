@@ -64,5 +64,6 @@ const Home = () => {
       right: '20px',
       padding: '10px',
       cursor: 'pointer',
+      zIndex: '999'
     },
   };
