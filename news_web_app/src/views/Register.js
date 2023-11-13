@@ -3,6 +3,7 @@ import './Register.css'; // Import your CSS file for styling
 import axios from "axios";
 import {Link} from "react-router-dom"
 import { useNavigate } from 'react-router-dom';
+import HeaderView from './template/header.js';
 
 
 async function registerApiCall(user,navigate){
@@ -44,9 +45,13 @@ function Register() {
 }   
 
   return (
-    <div className="App">
-      <div className="form-container">
-        <h2>Registration</h2>
+    <>
+        <HeaderView />
+        < br/>
+        <h2 style={{display:"flex",justifyContent:'center'}}>Registration</h2>
+        <br />
+         <div className="form-container">
+       
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label>Email:</label>
@@ -78,11 +83,11 @@ function Register() {
           <div>
           </div>
           <div className='button-container'>
-          <button className="register-button" type="submit">
+          <button className="login-button" type="submit">
             Register
           </button>
           <Link to="/login">
-            <button className="register-button" onClick={reset}>
+            <button className="reset-button" onClick={reset}>
             Cancel
           </button>
           </Link>
@@ -90,7 +95,8 @@ function Register() {
           </div>
         </form>
       </div>
-    </div>
+    </>
+   
   );
 }
 

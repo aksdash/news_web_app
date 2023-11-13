@@ -49,9 +49,12 @@ function Login() {
   return (
     <>
     <LoginHeader />
-     <div className="form-container"> {/* Apply the same class as in Register component */}
-      <h2>Login Page</h2>
+     <div className="form-container"> 
       <form onSubmit={handleSubmit}>
+      <h2>Login Page</h2>
+      <br/>
+      <br/>
+      <br/>
         <div className="form-group">
           <label>Email:</label>
           <input
@@ -72,9 +75,10 @@ function Login() {
             required
           />
         </div>
+        <br />
         <div className="form-group">
-          <button type="submit">Submit</button>
-          <button type="button" onClick={resetForm}>
+          <button type="submit" className='login-button '>Submit</button>
+          <button type="button" className='reset-button' onClick={resetForm}>
             Reset
           </button>
         </div>
