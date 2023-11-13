@@ -9,7 +9,7 @@ const HeaderView = () => {
       <div style={styles.box}><Link to="/home" style={styles.link}>Home</Link></div>
       <div style={styles.box}><Link to="/sports" style = {styles.link}>Sports</Link></div>
       <div style={styles.box}><Link to="/aboutus" style = {styles.link}>About Us</Link></div>
-      <div style={styles.box}><Link to="/contact us" style ={styles.link}>Contact Us</Link></div>
+      <div style={styles.box}><Link to="/contactus" style ={styles.link}>Contact Us</Link></div>
       <div style={styles.box}><Link to="/login" style ={styles.link}>Admin Login</Link></div>
     </div>
   );

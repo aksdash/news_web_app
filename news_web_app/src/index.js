@@ -9,6 +9,8 @@ import Login from './views/Login.js';
 import Home from './views/Home.js';
 import NewsForm from './views/NewsForm.js';
 import NewsList from './views/NewsList';
+import AboutUs from './views/AboutUs.js';
+import ContactUs from './views/ContactUs';
 
 
 
@@ -23,6 +25,8 @@ root.render(
         <Route path='/newsform' element = {<NewsForm  />} />
         <Route path= '/newslist' element = {<NewsList />}  />
         <Route path= '/register' element = {<Register />} />
+        <Route path= '/aboutus' element= {<AboutUs/>} />
+        <Route path = 'contactus' element = {<ContactUs />}/>
       </Routes>
     </Router>
   </React.StrictMode>
