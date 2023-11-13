@@ -11,6 +11,7 @@ const NewsForm = () => {
     url: '',
     imageUrl: '',
     publishedAt: '',
+    category:''
   });
 
   const handleChange = (e) => {
@@ -59,6 +60,7 @@ const NewsForm = () => {
       url: '',
       imageUrl: '',
       publishedAt: '',
+      category: '',
     });
   };
 
@@ -116,6 +118,15 @@ const NewsForm = () => {
             type="text"
             name="publishedAt"
             value={formData.publishedAt}
+            onChange={handleChange}
+          />
+        </div>
+        <div style={styles.formField}>
+          <label>Category:</label>
+          <input
+            type="text"
+            name="category"
+            value={formData.category}
             onChange={handleChange}
           />
         </div>

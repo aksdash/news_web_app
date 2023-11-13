@@ -11,6 +11,7 @@ import NewsForm from './views/NewsForm.js';
 import NewsList from './views/NewsList';
 import AboutUs from './views/AboutUs.js';
 import ContactUs from './views/ContactUs';
+import News from './views/Sports';
 
 
 
@@ -27,6 +28,7 @@ root.render(
         <Route path= '/register' element = {<Register />} />
         <Route path= '/aboutus' element= {<AboutUs/>} />
         <Route path = 'contactus' element = {<ContactUs />}/>
+        <Route path = 'sports' element = {<News />}/>
       </Routes>
     </Router>
   </React.StrictMode>

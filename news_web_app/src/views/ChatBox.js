@@ -1,81 +1,91 @@
-// ChatBox.js
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
+import { baseUrl } from '../util/api.js';
 
 const ChatBox = () => {
   const [socket, setSocket] = useState(null);
-  const [messages, setMessages] = useState([]);
-  const [newMessage, setNewMessage] = useState('');
+  const [username, setUsername] = useState('');
+  const [isJoined, setIsJoined] = useState(false);
+  const [message, setMessage] = useState('');
+  const [chatHistory, setChatHistory] = useState([]);
 
   useEffect(() => {
-    // Connect to the socket server
-    const newSocket = io('http://localhost:4000');
+    const newSocket = io(baseUrl); // Replace with your server URL
     setSocket(newSocket);
 
-    newSocket.on('chatmessage', (message) => {
-      setMessages((prevMessages) => [...prevMessages, message]);
-    });
-
-    newSocket.on('userJoined', (name) => {
-        console.log(`${name} joined the chat`)
-    })
-
-    newSocket.on('userLeft', (name) => {
-        console.log(`${name} left the chat`)
-    })
-
     return () => {
-      newSocket.disconnect();
+     // newSocket.disconnect();
     };
   }, []);
 
-  const handleSendMessage = () => {
-    // Emit a message to the server
-    socket.emit('chatMessage', newMessage);
+  useEffect(() => {
+    if (socket) {
+      socket.on('message', (newMessage) => {
+        setChatHistory((prevChatHistory) => [...prevChatHistory, newMessage]);
+      });
+    }
+  }, [socket]);
 
-    // Clear the input field
-    setNewMessage('');
+  const handleJoinChat = () => {
+    if (username.trim() !== '') {
+      setIsJoined(true);
+      socket.emit('join', username);
+    }
+  };
+
+  const handleSendMessage = () => {
+    if (message.trim() !== '') {
+      socket.emit('message', { username, message });
+      setMessage('');
+    }
   };
 
   return (
-    <div style={styles.chatBox}>
-      <div style={styles.messagesContainer}>
-        {messages.map((msg, index) => (
-          <div key={index}>{msg}</div>
-        ))}
-      </div>
-      <div style={styles.inputContainer}>
-        <input
-          type="text"
-          value={newMessage}
-          onChange={(e) => setNewMessage(e.target.value)}
-        />
-        <button onClick={handleSendMessage}>Send</button>
-      </div>
+    <div
+      style={{
+        position: 'fixed',
+        bottom: 0,
+        right: 0,
+        width: '300px',
+        height: '60%',
+        border: '1px solid #ccc',
+        backgroundColor: '#fff',
+        overflowY: 'auto',
+      }}
+    >
+      {!isJoined ? (
+        <div style={{ padding: '10px' }}>
+          <h3>Join Chat</h3>
+          <input
+            type="text"
+            placeholder="Enter your username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <button onClick={handleJoinChat}>Join</button>
+        </div>
+      ) : (
+        <div style={{ padding: '10px', height: '100%' }}>
+          <div style={{ height: '80%', overflowY: 'auto' }}>
+            {chatHistory.map((chat, index) => (
+              <div key={index}>
+                <strong>{chat.username}:</strong> {chat.message}
+              </div>
+            ))}
+          </div>
+          <div style={{ marginTop: '10px' }}>
+            <input
+              type="text"
+              placeholder="Type your message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+            />
+            <button onClick={handleSendMessage}>Send</button>
+          </div>
+        </div>
+      )}
     </div>
   );
-};
-
-const styles = {
-  chatBox: {
-    position: 'fixed',
-    bottom: 0,
-    right: 0,
-    margin: '10px',
-    border: '1px solid #ccc',
-    borderRadius: '5px',
-    padding: '10px',
-    backgroundColor: '#fff',
-    maxWidth: '300px',
-  },
-  messagesContainer: {
-    maxHeight: '200px',
-    overflowY: 'auto',
-  },
-  inputContainer: {
-    display: 'flex',
-    marginTop: '10px',
-  },
 };
 
 export default ChatBox;

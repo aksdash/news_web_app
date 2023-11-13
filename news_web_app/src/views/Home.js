@@ -7,6 +7,8 @@ import HeaderView from './template/header.js';
 import Footer from './template/footer.js';
 import ChatBox from './ChatBox.js';
 import { fetchNews } from '../util/api.js';
+import News from './Sports.js';
+
 import axios from 'axios';
 
 const Home = () => {

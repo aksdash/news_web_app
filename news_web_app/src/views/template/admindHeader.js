@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'; // Assuming you are using React Router 
 const AdminHeader = () => {
   return (
     <div style={styles.header}>
-      <div style={styles.logo}>Update24X7</div>
+      <div style={styles.logo}> <Link style={styles.link} to="/home">Update 24 X7</Link></div>
 
       <div style={styles.navLinks}>
         <Link style={styles.link} to="/newsform">News Form</Link>

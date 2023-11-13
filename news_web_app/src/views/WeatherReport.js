@@ -54,18 +54,19 @@ const WeatherReport = () => {
 
   return (
     <section id="weather-report" style={styles.weatherReport}>
+      <h2>Weather Today</h2>
       <div style={styles.weatherItem}>
         <span role="img" aria-label="Temperature" style={styles.icon}>
           🌡️
         </span>
-        <p>{weather.temperature}</p>
+        <p>{weather.temperature} K</p>
       </div>
 
       <div style={styles.weatherItem}>
         <span role="img" aria-label="Humidity" style={styles.icon}>
           💧
         </span>
-        <p>{weather.humidity}</p>
+        <p>{weather.humidity}%</p>
       </div>
 
       <div style={styles.weatherItem}>
@@ -76,8 +77,8 @@ const WeatherReport = () => {
       </div>
 
       <div style={styles.weatherItem}>
+      <p>City</p>
         <span role="img" aria-label="City" style={styles.icon}>
-          
         </span>
         <p>{weather.city}</p>
       </div>

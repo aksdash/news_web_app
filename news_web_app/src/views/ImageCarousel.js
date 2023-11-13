@@ -22,7 +22,7 @@ const ImageCarousel = ({data}) => {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 900,
+    speed: 700,
     slidesToShow: 1,
     slidesToScroll: 1,
   };

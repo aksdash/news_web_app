@@ -3,7 +3,7 @@ import axios from "axios"
 import userState from "../model/UserState.js"
 import UserSession from "../model/User.js"
 
-const baseUrl = "http://localhost:4000"
+export const baseUrl = "http://localhost:4000"
 
 export const loginApi = async(credential) => {
     try{
@@ -33,7 +33,21 @@ export const fetchNews = async() => {
     }
 }
 
+export const fetchNewsByCategory = async(category) => {
+    try{
+        const response = await axios.get(`${baseUrl}/article/list/${category}`)
+        if (response.status === 200){
+            return response.data
+        }else{
+            throw new Error('No  articles')
+        }
+    }catch(err){
+        throw new Error('Internal Server Error')
+    }
+}
+
 export const submitNews = async(req) => {
+    console.log(req)
     const token = sessionStorage.getItem('token');
     const config = getConfig()
     try {

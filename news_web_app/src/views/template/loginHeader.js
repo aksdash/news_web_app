@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 const LoginHeader = () => {
   return (
     <div style={styles.headerContainer}>
-       <div style={styles.box}>Update 24X7</div>
+       <div style={styles.box}> <Link style={styles.link} to="/home">Update 24X7</Link></div>
       <div style={styles.box}><Link to="/register" style={styles.link}>Register</Link></div>
-      <div style={styles.box}><Link to="/login" style ={styles.link}>Login</Link></div>
+      <div style={styles.box}><Link to="/login" style ={styles.link}> Login</Link></div>
     </div>
   );
 };
